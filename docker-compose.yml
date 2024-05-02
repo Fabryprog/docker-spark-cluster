@@ -32,7 +32,7 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
-       - ./events:/tmp/spark-events
+       - ./events/spark:/tmp/spark-events
   spark-worker-b:
     image: cluster-apache-spark:3.4.0
     hostname: "spark-worker-b"
@@ -52,7 +52,7 @@ services:
     volumes:
         - ./apps:/opt/spark-apps
         - ./data:/opt/spark-data
-        - ./events:/tmp/spark-events
+        - ./events/spark:/tmp/spark-events
   spark-history:
     image: cluster-apache-spark:3.4.0
     hostname: "spark-history"
@@ -61,7 +61,7 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
-       - ./events:/tmp/spark-events
+       - ./events/spark:/tmp/spark-events
     environment:
       - SPARK_LOCAL_IP=spark-history
       - SPARK_WORKLOAD=history
@@ -71,4 +71,16 @@ services:
       - "5432:5432"
     environment: 
       - POSTGRES_PASSWORD=casa1234
+  otelcol:
+    image: otelcol:1.0.0
+    platform: "linux/amd64"
+    volumes:
+       - ./OT/config.yaml:/tmp/config.yaml
+       - ./events/ot:/tmp/ot
+    depends_on:
+       - spark-master
+       - spark-worker-a
+       - spark-worker-b
+       - spark-history
+
 

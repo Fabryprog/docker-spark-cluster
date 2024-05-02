@@ -29,6 +29,8 @@ The following steps will make you run your spark cluster's containers.
 
 ```sh
 docker build -t cluster-apache-spark:3.4.0 .
+
+docker build --platform "linux/amd64" -f Dockerfile.otelcol -t otelcol:1.0.0 .
 ```
 
 ## Run the docker-compose
@@ -82,7 +84,8 @@ Host Mount|Container Mount|Purposse
 ---|---|---
 apps|/opt/spark-apps|Used to make available your app's jars on all workers & master
 data|/opt/spark-data| Used to make available your app's data on all workers & master
-events|/tmp/spark-events| Used to save spark events
+events/spark|/tmp/spark-events| Used to save spark events
+events/ot|/tmp/ot| Used to save open telemetry collector files
 
 This is basically a dummy DFS created from docker Volumes...(maybe not...)
 
