@@ -11,6 +11,7 @@ container|Exposed ports
 spark-master|9090 7077
 spark-worker-1|9091
 spark-worker-2|9092
+spark-history|19090
 demo-database|5432
 
 # Installation
@@ -46,19 +47,17 @@ Just validate your cluster accesing the spark UI on each worker & master URL.
 
 http://localhost:9090/
 
-![alt text](docs/spark-master.png "Spark master UI")
-
 ### Spark Worker 1
 
 http://localhost:9091/
-
-![alt text](docs/spark-worker-1.png "Spark worker 1 UI")
 
 ### Spark Worker 2
 
 http://localhost:9092/
 
-![alt text](docs/spark-worker-2.png "Spark worker 2 UI")
+### Spark History
+
+http://localhost:19090/
 
 
 # Resource Allocation 
