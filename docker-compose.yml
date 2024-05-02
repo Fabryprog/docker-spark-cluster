@@ -9,6 +9,7 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
+       - ./events:/tmp/spark-events
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
@@ -31,6 +32,7 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
+       - ./events:/tmp/spark-events
   spark-worker-b:
     image: cluster-apache-spark:3.4.0
     hostname: "spark-worker-b"
@@ -50,6 +52,19 @@ services:
     volumes:
         - ./apps:/opt/spark-apps
         - ./data:/opt/spark-data
+        - ./events:/tmp/spark-events
+  spark-history:
+    image: cluster-apache-spark:3.4.0
+    hostname: "spark-history"
+    ports:
+      - "19090:18080"
+    volumes:
+       - ./apps:/opt/spark-apps
+       - ./data:/opt/spark-data
+       - ./events:/tmp/spark-events
+    environment:
+      - SPARK_LOCAL_IP=spark-history
+      - SPARK_WORKLOAD=history
   demo-database:
     image: postgres:15
     ports: 
