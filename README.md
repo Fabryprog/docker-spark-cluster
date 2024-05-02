@@ -82,6 +82,7 @@ Host Mount|Container Mount|Purposse
 ---|---|---
 apps|/opt/spark-apps|Used to make available your app's jars on all workers & master
 data|/opt/spark-data| Used to make available your app's data on all workers & master
+events|/tmp/spark-events| Used to save spark events
 
 This is basically a dummy DFS created from docker Volumes...(maybe not...)
 
