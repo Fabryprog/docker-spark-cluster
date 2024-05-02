@@ -1,0 +1,7 @@
+FROM ubuntu:latest
+RUN apt-get update; apt-get install -y wget curl
+
+RUN wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.99.0/otelcol-contrib_0.99.0_linux_amd64.deb
+RUN dpkg -i otelcol-contrib_0.99.0_linux_amd64.deb 
+
+CMD ["otelcol-contrib", "--config", "/tmp/config.yaml"]
