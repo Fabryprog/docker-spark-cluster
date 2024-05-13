@@ -9,7 +9,7 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
-       - ./events:/tmp/spark-events
+       - ./events/spark:/tmp/spark-events
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
